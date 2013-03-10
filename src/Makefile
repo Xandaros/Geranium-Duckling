@@ -3,7 +3,7 @@ CFLAGS		= -Wall -Wextra -nostdlib -fno-builtin -nostartfiles -nodefaultlibs #-We
 LD		= i586-elf-ld
 EMU		= qemu-system-i386
 
-TARGETS	= loader.o kernel.o kstd.o
+TARGETS	= loader.o kernel.o kstd.o gdt.o
 
 all: kernel.bin
 

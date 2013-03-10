@@ -7,6 +7,12 @@
 
 #include "stdint.h"
 #include "kstd.h"
+#include "gdt.h"
+
+void init()
+{
+	setupGDT();
+}
 
 void kmain()
 {
@@ -19,5 +25,11 @@ void kmain()
 		return;
 	}
 
+	init();
+
 	clear();
+	char b[20];
+	volatile int a = 0;
+	__asm__ __volatile__("mov %%cs,%0;" : "=r"(a));
+	println(itoa(a, b, 16));
 }

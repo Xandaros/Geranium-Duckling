@@ -20,6 +20,7 @@ align 4
 STACKSIZE equ 0x4000	;16k
 
 loader:
+	cli								; Just in case
 	mov esp, stack + STACKSIZE		; Setup stack
 	mov [magic], eax
 	mov [mbd], ebx					; Copy multiboot info
@@ -29,6 +30,20 @@ loader:
 .hang:
 	hlt
 	jmp .hang						; Kernel exited, loop eternally... for now
+
+global flushGDT
+flushGDT:
+	push ax
+	mov ax,0x10
+	mov ds,ax
+	mov es,ax
+	mov fs,ax
+	mov gs,ax
+	mov ss,ax
+	jmp 0x8:end
+end:
+	pop ax
+ret
 
 section .bss
 align 4
