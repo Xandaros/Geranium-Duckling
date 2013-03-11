@@ -6,7 +6,7 @@
  */
 
 #include "stdint.h"
-#include "kstd.h"
+#include "kstdio.h"
 #include "system.h"
 #include "string.h"
 
@@ -15,6 +15,7 @@ void init()
 	setupGDT();
 	protectedMode();
 	setupIDT();
+	setupPIC();
 	__asm__ __volatile__("sti");
 }
 

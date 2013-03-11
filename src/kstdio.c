@@ -5,7 +5,7 @@
  *      Author: xandaros
  */
 
-#include "kstd.h"
+#include "kstdio.h"
 
 static unsigned char *videoram = (unsigned char *)0xB8000;
 unsigned char cur_x, cur_y;
@@ -44,6 +44,35 @@ void clear()
 			*ptr++ = 0;
 		}
 	}
+}
+
+void outb(word port, byte value)
+{
+	__asm__ __volatile__("outb %0, %1" : : "a"(value), "Nd"(port));
+}
+
+byte inb(word port)
+{
+	byte ret;
+	__asm__ __volatile__("inb %1, %0" : "=a"(ret) : "Nd"(port));
+	return ret;
+}
+
+void outw(word port, word value)
+{
+	__asm__ __volatile__("outw %0, %1" : : "a"(value), "Nd"(port));
+}
+
+word inw(word port)
+{
+	word ret;
+	__asm__ __volatile__("inw %1, %0" : "=a"(ret) : "Nd"(port));
+	return ret;
+}
+
+void io_wait()
+{
+    __asm__ __volatile__("outb %%al, $0x80" : : "a"(0));
 }
 
 char *itoa(sint32_t i, char *buffer, int base)

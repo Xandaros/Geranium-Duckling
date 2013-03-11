@@ -61,6 +61,21 @@ extern void isr28();
 extern void isr29();
 extern void isr30();
 extern void isr31();
+extern void isr32();
+extern void isr33();
+extern void isr34();
+extern void isr35();
+extern void isr36();
+extern void isr37();
+extern void isr38();
+extern void isr39();
+extern void isr40();
+extern void isr41();
+extern void isr42();
+extern void isr43();
+extern void isr44();
+extern void isr45();
+extern void isr46();
 
 void setGate(uint8_t i, uint32_t base, uint16_t sel, uint8_t flags)
 {
@@ -112,6 +127,21 @@ void setupIDT()
 	setGate(29, (uint32_t)isr29, 0x8, 0x8E);
 	setGate(30, (uint32_t)isr30, 0x8, 0x8E);
 	setGate(31, (uint32_t)isr31, 0x8, 0x8E);
+	setGate(32, (uint32_t)isr32, 0x8, 0x8E);
+	setGate(33, (uint32_t)isr33, 0x8, 0x8E);
+	setGate(34, (uint32_t)isr34, 0x8, 0x8E);
+	setGate(35, (uint32_t)isr35, 0x8, 0x8E);
+	setGate(36, (uint32_t)isr36, 0x8, 0x8E);
+	setGate(37, (uint32_t)isr37, 0x8, 0x8E);
+	setGate(38, (uint32_t)isr38, 0x8, 0x8E);
+	setGate(39, (uint32_t)isr39, 0x8, 0x8E);
+	setGate(40, (uint32_t)isr40, 0x8, 0x8E);
+	setGate(41, (uint32_t)isr41, 0x8, 0x8E);
+	setGate(42, (uint32_t)isr42, 0x8, 0x8E);
+	setGate(43, (uint32_t)isr43, 0x8, 0x8E);
+	setGate(44, (uint32_t)isr44, 0x8, 0x8E);
+	setGate(45, (uint32_t)isr45, 0x8, 0x8E);
+	setGate(46, (uint32_t)isr46, 0x8, 0x8E);
 
 	__asm__ __volatile__ ("lidt %0" : : "m"(idt_ptr));
 }
