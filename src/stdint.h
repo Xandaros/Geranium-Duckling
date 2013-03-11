@@ -23,4 +23,6 @@ typedef unsigned int dword;
 typedef unsigned short word;
 typedef unsigned char byte;
 
+typedef dword size_t;
+
 #endif /* STDINT_H_ */

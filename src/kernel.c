@@ -7,11 +7,15 @@
 
 #include "stdint.h"
 #include "kstd.h"
-#include "gdt.h"
+#include "system.h"
+#include "string.h"
 
 void init()
 {
 	setupGDT();
+	protectedMode();
+	setupIDT();
+	__asm__ __volatile__("sti");
 }
 
 void kmain()
@@ -28,8 +32,9 @@ void kmain()
 	init();
 
 	clear();
-	char b[20];
-	volatile int a = 0;
-	__asm__ __volatile__("mov %%cs,%0;" : "=r"(a));
-	println(itoa(a, b, 16));
+	println("Before interrupts");
+	asm volatile("int $0x3");
+	println("Between interrupts");
+	asm volatile("int $0x4");
+	println("After interrupts");
 }

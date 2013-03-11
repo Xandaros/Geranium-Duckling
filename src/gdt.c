@@ -5,7 +5,7 @@
  *      Author: xandaros
  */
 
-#include "gdt.h"
+#include "system.h"
 #include "stdint.h"
 
 #define ACCESS_ACCESSED 1

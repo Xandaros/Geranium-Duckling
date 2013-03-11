@@ -3,5 +3,9 @@
 *.o
 *.bin
 *.img
+bochsrc
+pad
+stage1
+stage2
 
 !.gitignore

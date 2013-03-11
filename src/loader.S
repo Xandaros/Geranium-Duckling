@@ -31,19 +31,37 @@ loader:
 	hlt
 	jmp .hang						; Kernel exited, loop eternally... for now
 
+
 global flushGDT
 flushGDT:
 	push ax
+
 	mov ax,0x10
 	mov ds,ax
 	mov es,ax
 	mov fs,ax
 	mov gs,ax
 	mov ss,ax
-	jmp 0x8:end
-end:
+	jmp 0x8:flushGDT_end
+
+flushGDT_end:
 	pop ax
 ret
+
+
+global protectedMode
+protectedMode:
+	push eax
+
+	mov eax, cr0
+	or eax, 1
+	mov cr0, eax
+	jmp 0x8:protectedMode_end
+
+protectedMode_end:
+	pop eax
+ret
+
 
 section .bss
 align 4
